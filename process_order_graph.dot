@@ -1,0 +1,25 @@
+digraph communication_graph {
+	rankdir=BT;
+	size="8,5;"
+	layer_0 [ color="#ff0000" label="layer 0"];
+	Sporo_write_state_start_read_states [ shape = rect label="Sporo_write_state_start_read_states [-1]" ];
+	Sporo_write_state_start_read_states -> layer_0;
+	layer_1 [ color="#ff0000" label="layer 1"];
+	layer_1 ->Sporo_write_state_start_read_states;
+	Sporo_read_states_read_states_forces [ shape = rect label="Sporo_read_states_read_states_forces [1]" ];
+	Sporo_read_states_read_states_forces -> layer_1;
+	layer_2 [ color="#ff0000" label="layer 2"];
+	layer_2 ->Sporo_read_states_read_states_forces;
+	Sporo_forces_forces_end [ shape = rect label="Sporo_forces_forces_end [0]" ];
+	Sporo_forces_forces_end -> layer_2;
+	state_message [ label = "state" color="#00ff00" shape = parallelogram];
+	state_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	state_message_sync_start_0 -> state_message [ color="#00ff00" label="state_1"];
+	{ rank=same; Sporo_write_state_start_read_states; state_message_sync_start_0; }
+	state_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	state_message_sync_end_0 -> state_message_sync_start_0 [ color="#00ff00" ];
+	state_message_sync_end_0 -> Sporo_read_states_read_states_forces [ color="#00ff00" constraint=false ];
+	state_message_sync_start_0 -> Sporo_write_state_start_read_states [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; Sporo_read_states_read_states_forces; state_message_sync_end_0; }
+	Sporo_write_state_start_read_states -> state_message [ color="#00ff00" constraint=false ];
+}

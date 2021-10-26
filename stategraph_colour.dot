@@ -1,0 +1,32 @@
+digraph state_graph {
+	rankdir=TB;
+	size="8,5;"
+	layer_0 [shape=plaintext, label="layer 0"];
+	layer_1 [shape=plaintext, label="layer 1"];
+	layer_0 -> layer_1 [style=invis];
+	layer_2 [shape=plaintext, label="layer 2"];
+	layer_1 -> layer_2 [style=invis];
+	
+	/* States */
+	Sporo_end [label = "end"]
+	Sporo_forces [label = "forces"]
+	Sporo_read_states [label = "read_states"]
+	Sporo_start [label = "start"]
+	Sporo_write_state_start_read_states [label = "write_state", shape = box,style=filled,color=antiquewhite];
+	Sporo_read_states_read_states_forces [label = "read_states", shape = box,style=filled,color=antiquewhite];
+	Sporo_forces_forces_end [label = "forces", shape = box,style=filled,color=antiquewhite];
+	
+	/* Transitions */
+	Sporo_start -> Sporo_write_state_start_read_states;
+	Sporo_write_state_start_read_states -> Sporo_read_states;
+	Sporo_read_states -> Sporo_read_states_read_states_forces;
+	Sporo_read_states_read_states_forces -> Sporo_forces;
+	Sporo_forces -> Sporo_forces_forces_end;
+	Sporo_forces_forces_end -> Sporo_end;
+	
+	/* Communications */
+	Sporo_write_state_start_read_states -> Sporo_read_states_read_states_forces [ label = "state" color="#00ff00" constraint=false];
+	{ rank=same; layer_0;  Sporo_write_state_start_read_states; }
+	{ rank=same; layer_1;  Sporo_read_states_read_states_forces; }
+	{ rank=same; layer_2;  Sporo_forces_forces_end; }
+}
