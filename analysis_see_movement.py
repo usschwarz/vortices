@@ -102,7 +102,7 @@ with writer.saving(fig, "Movie.mp4", 100):
 		path = Path(verts_rect, codes)
 		patch = patches.PathPatch(path, facecolor = 'none', lw=2)
 		ax.add_patch(patch)       
-		
+		print itera
 		# ------------------ start plotting ------------------
 		if count>0:
 			writer.grab_frame()

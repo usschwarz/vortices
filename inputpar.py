@@ -44,7 +44,7 @@ kth = 4
 # elastic constant of the spring regulating the bending at each node
 
 ki = 0.02
-# height of the Gaussian potential associated to each node
+# height of the LJ potential associated to each node
 
 k0 = 0.2
 kvar = 0.0
