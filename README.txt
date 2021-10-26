@@ -3,6 +3,8 @@
 # contact: pintu.patra@bioquant.uni-heidelberg.de
 # date: 2021-25-10
 
+After dowloading all the files. Edit "main" file permission- Properies/Permissions/Executer Tick 'Allow executing file as program'.
+
 To run the agent-based simulation code in single-step run "code-run.c" file. Use the following set of commands.
 1) gcc code-run.c
 2) ./a.out
